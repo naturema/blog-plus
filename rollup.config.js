@@ -6,6 +6,8 @@ import babel from 'rollup-plugin-babel';
 import vue from 'rollup-plugin-vue';
 import buble from 'rollup-plugin-buble';
 import replace from 'rollup-plugin-replace';
+import commonjs from 'rollup-plugin-commonjs';
+import postcss from 'rollup-plugin-postcss';
 
 export default {
   input: './app/public/app.js',
@@ -14,6 +16,7 @@ export default {
     format: 'cjs'
   },
   plugins: [
+    postcss({extensions: [ '.css' ]}),
     vue({compileTemplate: true}),
     buble(),
     replace({
@@ -21,6 +24,7 @@ export default {
       'process.env.VUE_ENV': JSON.stringify('browser')
     }),
     resolve(),
+    commonjs(),
     babel({
       exclude: 'node_modules/**' // 只编译我们的源代码
     })
