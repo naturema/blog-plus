@@ -4,17 +4,37 @@
   "description": "blog plus",
   "private": true,
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "egg": "^2.0.0",
-    "egg-scripts": "^2.1.0"
+    "egg-cors": "^2.0.0",
+    "egg-logger": "^1.6.1",
+    "egg-mysql": "^3.0.0",
+    "egg-scripts": "^2.1.0",
+    "egg-view-nunjucks": "^2.1.4",
+    "vue": "^2.5.13",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "autod": "^3.0.1",
     "autod-egg": "^1.0.0",
+    "babel-core": "^6.26.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-latest": "^6.24.1",
     "egg-bin": "^4.3.5",
     "egg-ci": "^1.8.0",
     "egg-mock": "^3.13.0",
     "eslint": "^4.11.0",
     "eslint-config-egg": "^5.1.0",
+    "rollup-plugin-alias": "^1.4.0",
+    "rollup-plugin-babel": "^3.0.3",
+    "rollup-plugin-buble": "^0.18.0",
+    "rollup-plugin-json": "^2.3.0",
+    "rollup-plugin-node-resolve": "^3.0.2",
+    "rollup-plugin-replace": "^2.0.0",
+    "rollup-plugin-vue": "^3.0.0",
+    "vue-template-compiler": "^2.5.13",
     "webstorm-disable-index": "^1.2.0"
   },
   "engines": {
@@ -23,7 +43,7 @@
   "scripts": {
     "start": "egg-scripts start --daemon",
     "stop": "egg-scripts stop",
-    "dev": "egg-bin dev",
+    "dev": "egg-bin dev --port 7003",
     "debug": "egg-bin debug",
     "test": "yarn run lint -- --fix && yarn run test-local",
     "test-local": "egg-bin test",
