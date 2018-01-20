@@ -16,8 +16,8 @@ export default {
     format: 'cjs'
   },
   plugins: [
-    postcss({extensions: [ '.css' ]}),
     vue({compileTemplate: true}),
+    postcss({extensions: [ '.css' ]}),
     buble(),
     replace({
       'process.env.NODE_ENV': JSON.stringify('development'),
