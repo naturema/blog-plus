@@ -5,7 +5,7 @@ const webpack = require('webpack');
 
 
 module.exports = {
-  // devtool: 'inline-source-map',
+  devtool: 'inline-source-map',
   entry: './app/public/app.js',
   output: {
     path: path.join(__dirname, 'app/public/dist'),

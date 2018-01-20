@@ -5,17 +5,22 @@ import Router from 'vue-router';
 Vue.use(Router);
 
 
+import Welcome from '../components/Welcome.vue';
 import Main from '../components/Main.vue';
 
 
 export default new Router({
   routes: [{
       path: '/',
-      redirect: '/main'
+      redirect: '/welcome'
+    },
+    {
+      path:'/welcome',
+      component: Welcome
     },
     {
       path:'/main',
-      component: Main
+      component:Main
     }
   ]
 })
