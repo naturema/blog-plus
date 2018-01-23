@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <transition name="move" mode="out-in"><router-view></router-view></transition>
   </div>
 </template>
 

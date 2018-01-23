@@ -4,6 +4,7 @@
   "description": "blog plus",
   "private": true,
   "dependencies": {
+    "axios": "^0.17.1",
     "babel-polyfill": "^6.26.0",
     "egg": "^2.0.0",
     "egg-cors": "^2.0.0",
