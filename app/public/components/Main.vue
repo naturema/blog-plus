@@ -1,15 +1,19 @@
 <template>
-  <div>{{msg}}</div>
+  <div>
+    <Row>
+        <Col span="18"></Col>
+        <Col span="6"></Col>
+    </Row>
+  </div>
 </template>
 <script>
 export default {
-  data(){
-    return {
-      msg:'Hello Gatinul'
-    }
-  }
+
 }
 </script>
 <style scoped>
-
+  .ivu-col{
+    border: 1px solid salmon;
+    height: 1000px;
+  }
 </style>
