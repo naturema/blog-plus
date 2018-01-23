@@ -10,6 +10,9 @@ export default {
 }
 </script>
 <style>
+  #app{
+    background: #f6f6f6;
+  }
 </style>
 
 

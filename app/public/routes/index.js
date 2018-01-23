@@ -7,7 +7,7 @@ Vue.use(Router);
 
 import Welcome from '../components/Welcome.vue';
 import Main from '../components/Main.vue';
-
+import TitleList from '../components/TitleList.vue';
 
 export default new Router({
   routes: [{
@@ -20,7 +20,14 @@ export default new Router({
     },
     {
       path:'/main',
-      component:Main
+      component:Main,
+      children:[{
+        path: '/',
+        component: TitleList
+      },{
+        path:'/test',
+        component:Welcome
+      }]
     }
   ]
 })

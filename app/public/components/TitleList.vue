@@ -1,42 +1,26 @@
 <template>
-  <Row class="gr_row">
-    <Col span="18" class="gr_col">
-      <Row type="flex" align="middle" class="code-row-bg" :gutter="64">
-        <Col span="12" class="gr_col_child" v-for="(item, index) in list" :key="index">
-        <div class="page">
-          <h2 class="title">{{item.title}}</h2>
-          <p>{{item.desc}}</p>
-        </div>
-        </Col>
-      </Row>
-    </Col>
-    <Col span="6" class="gr_col">
-    </Col>
-  </Row>
+    <Row type="flex" align="middle" class="code-row-bg" :gutter="64">
+      <Col span="12" class="gr_col_child" v-for="(item, index) in list" :key="index">
+      <div class="page">
+        <h2 class="title">{{item.title}}</h2>
+        <p>{{item.desc}}</p>
+      </div>
+      </Col>
+    </Row>
 </template>
 <script>
-import {mapGetters,mapState} from 'vuex'
+import {mapState,mapGetters} from 'vuex'
 export default {
   data(){
     return {
     }
   },
-  computed:mapState({
+  computed:mapGetters({
     list:'blogShort'
   }),
 }
 </script>
 <style scoped>
-  .gr_row {
-    height: 800px;
-  }
-  .ivu-row{
-    background: #f6f6f6;
-  }
-  .gr_col{
-    border: 1px solid salmon;
-    height: 1000px;
-  }
   body {
 	padding-top: 2.5em;
 	background-color: #f6f6f6;
