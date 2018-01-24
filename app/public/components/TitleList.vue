@@ -1,5 +1,7 @@
 <template>
-    <Row type="flex" align="middle" class="code-row-bg" :gutter="64">
+  <!--Scroll 要放在最外层-->
+  <Scroll :on-reach-bottom="handleReachBottom" :height="700">
+    <Row class="code-row-bg">
       <Col span="12" class="gr_col_child" v-for="(item, index) in list" :key="index">
       <div class="page">
         <h2 class="title">{{item.title}}</h2>
@@ -7,6 +9,7 @@
       </div>
       </Col>
     </Row>
+  </Scroll>
 </template>
 <script>
 import {mapState,mapGetters} from 'vuex'
@@ -18,6 +21,16 @@ export default {
   computed:mapGetters({
     list:'blogShort'
   }),
+  methods:{
+    handleReachBottom() {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          this.$store.dispatch("getBlog", "1");
+          resolve();
+        }, 500);
+      });
+    },
+  }
 }
 </script>
 <style scoped>
@@ -99,10 +112,14 @@ a {
 }
 .code-row-bg{
   padding: 30px;
+  min-height: 800px;
+  padding-top: 10px;
 }
 .gr_col_child{
-  margin-bottom: 35px;
-  height: 200px;
+  margin-top: -10px;
+  height: 260px;
+  overflow: hidden;
+  padding: 32px;
 }
 </style>
 
