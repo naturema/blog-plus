@@ -6,7 +6,8 @@
       <div class="page">
         <h2 class="title">{{item.title}}</h2>
         <p>{{item.desc}}</p>
-        <p class="icon"><Icon type="android-favorite-outline"></Icon> 1102</p>
+        <!-- <p class="icon"><Icon type="android-favorite-outline"></Icon> 1102</p> -->
+        <p class="icon"><Tag type="dot" color="#293D52">Vue</Tag><Tag type="dot" color="#F1E536">Js</Tag></p>
       </div>
       </Col>
     </Row>
@@ -128,6 +129,21 @@ a {
   height: 260px;
   overflow: hidden;
   padding: 32px;
+}
+
+.icon .ivu-tag-dot{
+  background: #E8E8E8!important;
+}
+.icon .ivu-tag{
+  padding: 0 4px;
+}
+</style>
+<style>
+.icon .ivu-tag-dot-inner{
+  margin-right: 0px!important;
+}
+.icon .ivu-tag-text{
+  font-weight:500;
 }
 </style>
 
