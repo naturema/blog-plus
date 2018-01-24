@@ -46,6 +46,7 @@ span.name{
   border: 0!important;
   border-radius: 0!important;
   border-bottom: 1px solid #c2cad8!important;
+  outline:none!important;
 }
 </style>
 

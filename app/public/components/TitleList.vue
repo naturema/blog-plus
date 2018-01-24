@@ -6,6 +6,7 @@
       <div class="page">
         <h2 class="title">{{item.title}}</h2>
         <p>{{item.desc}}</p>
+        <p class="icon"><Icon type="android-favorite-outline"></Icon> 1102</p>
       </div>
       </Col>
     </Row>
@@ -78,6 +79,7 @@ a {
 	box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.2);
 	text-shadow: 0 1px 0 #F6EF97;
 	position: relative;
+  height: 205px;
 }
 .page:before {
     -webkit-transform: skew(-15deg) rotate(-5deg);
@@ -97,11 +99,9 @@ a {
     width: 90%;
     height: 20%;
     content: ' ';
-		
     -webkit-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     -moz-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-
     position: absolute;
     bottom: 22px;
     z-index: -1;
@@ -109,6 +109,14 @@ a {
 .page p {
 	line-height: 2em;
 	padding: 0 2em;
+}
+.page .icon{
+  position: absolute;
+  right: 0px;
+  bottom: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
 }
 .code-row-bg{
   padding: 30px;
