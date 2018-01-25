@@ -63,13 +63,19 @@
       </div>
     </div>
     <blockquote>本站导航</blockquote>
+      <div class="gr_menu">
+        <div class="gr_menu_list active"><Icon type="ios-list"></Icon>博客首页</div>
+        <div class="gr_menu_list"><Icon type="ios-pricetags"></Icon>博文分类</div>
+        <div class="gr_menu_list"><Icon type="ios-calendar"></Icon>博文归档</div>
+        <div class="gr_menu_list"><Icon type="information-circled"></Icon>关于</div>
+      </div>
     <blockquote>热推文章</blockquote>
     <div class="gr_list">
-      <div class="gr_item">Elasticsearch入门使用</div>
-      <div class="gr_item">从零构建博客系统</div>
-      <div class="gr_item">Vuex源码分析</div>
-      <div class="gr_item">Mysql优雅使用</div>
-      <div class="gr_item">微信跳一跳Bug</div>
+      <div class="gr_item">1. Elasticsearch入门使用</div>
+      <div class="gr_item">2. 从零构建博客系统</div>
+      <div class="gr_item">3. Vuex源码分析</div>
+      <div class="gr_item">4. Mysql优雅使用</div>
+      <div class="gr_item">5. 微信跳一跳Bug</div>
     </div>
     
   </div>
@@ -124,6 +130,13 @@ blockquote span{
   background: #f6f6f6!important;
   font-size: 14px;
 }
+.gr_menu_list:not(.active):hover{
+  background: #E8E8E8;
+}
+.gr_menu_list i{
+  margin-right: .8rem;
+  font-size: 14px;
+}
 </style>
 <style>
 .table .ivu-row {
@@ -146,7 +159,24 @@ blockquote span{
 .gr_list>.gr_item:first-child{
   border-top:none;
 }
-
+.gr_menu{
+  width:90%;
+  margin:10px auto;
+}
+.gr_menu_list{
+  height: 30px;
+  line-height: 30px;
+  font-size: 15px;
+  color:#777;
+  border-radius: 3px;
+  padding-left: .8rem;
+  width: 50%;
+  cursor: pointer;
+}
+.gr_menu_list.active{
+  background: #A2B5CD;
+  color: #fff;
+}
 </style>
 
 
