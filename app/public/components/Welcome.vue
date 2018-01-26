@@ -8,6 +8,7 @@
             </p>
         </div>
         <div class="left_title">{{left_title}}</div>
+        <div class="left_visit"><Icon type="eye"></Icon> <span>{{visit}}</span></div>
         <Timeline class="timeline">
             <TimelineItem color="gray">
                 <p class="time">2017年</p>
@@ -22,7 +23,7 @@
                 <p class="content">不负时光，不负前程 .</p>
             </TimelineItem>
         </Timeline>
-        <div class="foot_bd" @click="gotoMain">进入博客&nbsp; >></div>
+        <div class="foot_bd" @click="gotoMain">进入博客 >></div>
     </div>
 </template>
 <script>
@@ -31,7 +32,8 @@
         data() {
             return {
                 left_title:'我的博客',
-                year:moment().year()
+                year:moment().year(),
+                visit:1201
             }
         },
         created(){
@@ -96,6 +98,17 @@
         -o-transform:rotate(-12deg); 
         width: 10px;
         font-size: 22px;
+    }
+    .left_visit{
+        position: absolute;
+        top: 71vh;
+        left: 68vw;
+        transform:rotate(-12deg);
+        -ms-transform:rotate(-12deg); 	/* IE 9 */
+        -moz-transform:rotate(-12deg); 	/* Firefox */
+        -webkit-transform:rotate(-12deg); /* Safari 和 Chrome */
+        -o-transform:rotate(-12deg); 
+        font-size: 16px;
     }
     .timeline{
         position: absolute;

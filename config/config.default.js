@@ -3,10 +3,8 @@
 module.exports = appInfo => {
   const config = exports = {
     security: {
-      csrf: {
-        ignoreJSON: true,
-      },
-      doMainWhiteList: [ 'http://localhost:7003' ],
+      csrf: false,
+      doMainWhiteList: '*',
     },
     cors: {
       allowMethods: 'GET, HEAD, PUT, POST, DELETE, PATCH, OPTIONS',

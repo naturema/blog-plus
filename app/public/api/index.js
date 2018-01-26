@@ -17,4 +17,7 @@ export default {
   getBlog(){
     return fetch('/getBlog')
   },
+  getCalendar(){
+    return fetch('/getCalendar')
+  }
 }

@@ -81,8 +81,23 @@
   </div>
 </template>
 <script>
+import {mapState,mapGetters} from 'vuex'
+import moment from 'moment';
 export default {
-  
+  data(){
+    return {
+      currentList:[],
+    }
+  },
+  computed:mapGetters({
+    totolList:'calendarList'
+  }),
+  created(){
+    moment.locale('zh-cn');
+    this.$store.dispatch('getCalendar')
+  },
+  methods:{
+  }
 }
 </script>
 <style scoped>
