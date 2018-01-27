@@ -19,5 +19,8 @@ export default {
   },
   getCalendar(){
     return fetch('/getCalendar')
+  },
+  getCommits(){
+    return fetch('/getCommits')
   }
 }

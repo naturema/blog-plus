@@ -22,7 +22,8 @@ const state = {
     desc:'有个老头儿的狗死了，老头就把死狗打包托运准备带回家乡厚葬。但是托运的时候机场的人不知道是死的，下飞机的时候发现是死的，吓坏了。以为把狗托运死了。于是就派人去附近狗市买了一个一模一样的。后来这老头打开行李发现狗活了。于是老头给吓死了！'
   }],
   success:false,
-  calendar:[]
+  calendar:[],
+  totalCommits:0
 }
 
 const actions = {
@@ -51,7 +52,6 @@ const actions = {
     })
   },
   getCalendar({commit,state}){
-    console.log('get')
     return new Promise((resolve,reject)=>{
       api.getCalendar()
       .then((res)=>{
@@ -60,16 +60,25 @@ const actions = {
       })
     })
   },
+  getCommits({commit, state}){
+    return new Promise((resolve,reject)=>{
+      api.getCommits()
+      .then((res)=>{
+        commit(types.GET_COMMITS,res)
+        resolve()
+      })
+    })
+  } 
 }
 
 const getters = {
   blogShort: state => state.blogShort,
-  calendarList: state => state.calendarList
+  calendar: state => state.calendar,
+  totalCommits: state => state.totalCommits
 }
 
 const mutations = {
   [types.GET_BLOG] (state,res){
-    console.warn(res);
     if(res.length>0){
       state.success = true
       for(let item of res){
@@ -78,8 +87,10 @@ const mutations = {
     }
   },
   [types.GET_CALENDAR] (state,res){
-    console.log(res);
     state.calendar = res;
+  },
+  [types.GET_COMMITS] (state,res){
+    state.totalCommits = res;
   }
 }
 

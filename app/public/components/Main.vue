@@ -23,7 +23,6 @@ export default {
     vHead
   },
   created() {
-    console.log(2);
   },
   methods: {
     

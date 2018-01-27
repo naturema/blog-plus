@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <blockquote>上传统计 <span>17 / 最近30天</span></blockquote>
+    <blockquote>上传统计 <span>{{total}} / 最近30天</span></blockquote>
     <div class="calendar">
       <div>
         <Row type="flex" justify="center" align="middle" style="height:35px">
@@ -16,49 +16,10 @@
       
       <div class="table">
         <Row type="flex" justify="center">
-          <Col span="3" class="nullDay"></Col>
-          <Col span="3" class="nullDay"></Col>
-          <Col span="3" ></Col>
-          <Col span="3"></Col>
-          <Col span="3"></Col>
-          <Col span="3"></Col>
-          <Col span="3"></Col>
-        </Row>
-        <Row type="flex" justify="center">
-          <Col span="3"></Col>
-          <Col span="3"></Col>
-          <Col span="3"></Col>
-          <Col span="3"></Col>
-          <Col span="3"></Col>
-          <Col span="3"></Col>
-          <Col span="3"></Col>
-        </Row>
-        <Row type="flex" justify="center">
-          <Col span="3"></Col>
-          <Col span="3"></Col>
-          <Col span="3"></Col>
-          <Col span="3"></Col>
-          <Col span="3"></Col>
-          <Col span="3"></Col>
-          <Col span="3"></Col>
-        </Row>
-        <Row type="flex" justify="center">
-          <Col span="3"></Col>
-          <Col span="3"></Col>
-          <Col span="3"></Col>
-          <Col span="3"></Col>
-          <Col span="3"></Col>
-          <Col span="3"></Col>
-          <Col span="3"></Col>
-        </Row>
-        <Row type="flex" justify="center">
-          <Col span="3"></Col>
-          <Col span="3"></Col>
-          <Col span="3"></Col>
-          <Col span="3"></Col>
-          <Col span="3" class="nullDay"></Col>
-          <Col span="3" class="nullDay"></Col>
-          <Col span="3" class="nullDay"></Col>
+          <Col span="3" v-for="(item,index) in totolList" :key="index">
+            <div v-if="currentList.indexOf(item.day) > -1" :style="{background:item.color}" class="hasDay"></div>
+            <div v-else class="nullDay"></div>
+          </Col>
         </Row>
       </div>
     </div>
@@ -90,13 +51,23 @@ export default {
     }
   },
   computed:mapGetters({
-    totolList:'calendarList'
+    totolList:'calendar',
+    total:'totalCommits'
   }),
   created(){
-    moment.locale('zh-cn');
+    console.log(2)
+    this.init()
     this.$store.dispatch('getCalendar')
+    this.$store.dispatch('getCommits')
   },
   methods:{
+    init(){
+      var self = this;
+      moment.locale('zh-cn')
+      for(let i=0;i<30;i++){
+        self.currentList.push(moment().subtract(i, 'days').format('L'))
+      }
+    }
   }
 }
 </script>
@@ -118,7 +89,7 @@ blockquote span{
   font-weight: 500;
 }
 .calendar{
-  height: 200px;
+  min-height: 200px;
   width: 90%;
   /* border: 1px solid black; */
   margin: 10px auto;
@@ -134,7 +105,13 @@ blockquote span{
   margin: 1.2px 1.2px;
 }
 .nullDay{
+  height: 100%;
+  width: 100%;
   background: #f6f6f6!important;
+}
+.hasDay{
+  height: 100%;
+  width: 100%;
 }
 .gr_item_tag{
   font-size: 16px;

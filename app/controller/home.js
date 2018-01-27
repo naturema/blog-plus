@@ -11,6 +11,10 @@ class HomeController extends Controller {
     const calendar = await ctx.service.home.getCalendar();
     ctx.body = calendar;
   }
+  async getCommits(ctx) {
+    const count = await ctx.service.home.getCommits();
+    ctx.body = count;
+  }
 }
 
 module.exports = HomeController;
