@@ -24,7 +24,8 @@ const state = {
   success:false,
   calendar:[],
   totalCommits:0,
-  visit:0
+  visit:0,
+  activePage:-1,
 }
 
 const actions = {
@@ -78,14 +79,18 @@ const actions = {
         resolve()
       })
     })
-  } 
+  },
+  pageChange({commit, state}, param){
+    commit(types.PAGE_CHANGE, param)
+  }
 }
 
 const getters = {
   blogShort: state => state.blogShort,
   calendar: state => state.calendar,
   totalCommits: state => state.totalCommits,
-  visit: state => state.visit
+  visit: state => state.visit,
+  activePage: state => state.activePage
 }
 
 const mutations = {
@@ -105,6 +110,9 @@ const mutations = {
   },
   [types.GET_VISIT] (state,res){
     state.visit = res;
+  },
+  [types.PAGE_CHANGE] (state,param){
+    state.activePage = param;
   }
 }
 

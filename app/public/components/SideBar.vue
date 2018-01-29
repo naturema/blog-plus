@@ -25,10 +25,10 @@
     </div>
     <blockquote>本站导航</blockquote>
       <div class="gr_menu">
-        <div class="gr_menu_list active"><Icon type="ios-list"></Icon>博客首页</div>
-        <div class="gr_menu_list"><Icon type="ios-pricetags"></Icon>博文分类</div>
-        <div class="gr_menu_list"><Icon type="ios-calendar"></Icon>博文归档</div>
-        <div class="gr_menu_list"><Icon type="information-circled"></Icon>关于</div>
+        <div class="gr_menu_list" v-bind:class="{active:index===1}"><Icon type="ios-list"></Icon>博客首页</div>
+        <div class="gr_menu_list" v-bind:class="{active:index===2}"><Icon type="ios-pricetags"></Icon>博文分类</div>
+        <div class="gr_menu_list" v-bind:class="{active:index===3}"><Icon type="ios-calendar"></Icon>博文归档</div>
+        <div class="gr_menu_list" v-bind:class="{active:index===4}"><Icon type="information-circled"></Icon>关于</div>
       </div>
     <blockquote>热推文章</blockquote>
     <div class="gr_list">
@@ -47,12 +47,13 @@ import moment from 'moment';
 export default {
   data(){
     return {
-      currentList:[],
+      currentList:[]
     }
   },
   computed:mapGetters({
     totolList:'calendar',
-    total:'totalCommits'
+    total:'totalCommits',
+    index:'activePage'
   }),
   created(){
     console.log(2)

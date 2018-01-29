@@ -23,6 +23,9 @@ export default {
   computed:mapGetters({
     list:'blogShort'
   }),
+  created(){
+    this.$store.dispatch('pageChange', 1);
+  },
   methods:{
     handleReachBottom() {
       return new Promise(resolve => {
