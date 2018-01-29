@@ -27,16 +27,20 @@
     </div>
 </template>
 <script>
+    import {mapState,mapGetters} from 'vuex'
     import moment from 'moment';
     export default {
         data() {
             return {
                 left_title:'我的博客',
-                year:moment().year(),
-                visit:1201
+                year:moment().year()
             }
         },
+        computed:mapGetters({
+            visit:'visit'
+        }),
         created(){
+            this.$store.dispatch('getVisits');
         },
         methods:{
             github:function(){

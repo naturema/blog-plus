@@ -5,6 +5,17 @@ const homeModel = require('../model/home');
 const moment = require('moment');
 
 class HomeService extends Service {
+  async login(ip) {
+    const result = homeModel.insertLogin(ip);
+    if (!result) {
+      this.logger.error('访问记录插入表失败');
+    }
+  }
+  async getVisits() {
+    const result = await homeModel.getVisits();
+    this.logger.info(result[0].total_count);
+    return result[0].total_count;
+  }
   async getCalendar() {
     moment.locale('zh-cn');
     const result = [];
@@ -46,9 +57,9 @@ class HomeService extends Service {
 }
 function covertColor(num) {
   let color = '#e8e8e8';
-  if (num > 10) {
+  if (num >= 10) {
     color = '#A2B5CD';
-  } else if (num > 5) {
+  } else if (num >= 5) {
     color = '#CAE1FF';
   } else if (num > 0) {
     color = '#E6E6FA';

@@ -23,10 +23,20 @@ const state = {
   }],
   success:false,
   calendar:[],
-  totalCommits:0
+  totalCommits:0,
+  visit:0
 }
 
 const actions = {
+  getVisits({commit, state},param){
+    return new Promise((resolve,reject)=>{
+      api.getVisits()
+      .then((res)=>{
+        commit(types.GET_VISIT,res)
+        resolve()
+      })
+    })
+  },
   getBlog({commit,state},param){
     return new Promise((resolve,reject)=>{
       commit(types.GET_BLOG,[{
@@ -74,7 +84,8 @@ const actions = {
 const getters = {
   blogShort: state => state.blogShort,
   calendar: state => state.calendar,
-  totalCommits: state => state.totalCommits
+  totalCommits: state => state.totalCommits,
+  visit: state => state.visit
 }
 
 const mutations = {
@@ -91,6 +102,9 @@ const mutations = {
   },
   [types.GET_COMMITS] (state,res){
     state.totalCommits = res;
+  },
+  [types.GET_VISIT] (state,res){
+    state.visit = res;
   }
 }
 

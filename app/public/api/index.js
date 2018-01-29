@@ -22,5 +22,8 @@ export default {
   },
   getCommits(){
     return fetch('/getCommits')
+  },
+  getVisits(){
+    return fetch('/getVisits')
   }
 }
