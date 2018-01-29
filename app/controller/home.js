@@ -1,19 +1,21 @@
 'use strict';
 
 const Controller = require('egg').Controller;
+const uuid = require('uuid');
 
 
 class HomeController extends Controller {
   async index(ctx) {
-    let ip = ctx.req.headers['x-forwarded-for'] ||
-        ctx.req.ip ||
-        ctx.req.connection.remoteAddress ||
-        ctx.req.socket.remoteAddress ||
-        ctx.req.connection.socket.remoteAddress || '';
-    if (ip.split(',').length > 0) {
-      ip = ip.split(',')[0];
+    let userId;
+    if (ctx.cookies.get('user')) {
+      this.logger.info(`有cookie：${ctx.cookies.get('user')}`);
+      userId = ctx.cookies.get('user');
+    } else {
+      this.logger.info('无cookie，生成userID');
+      userId = uuid.v1();
+      ctx.cookies.set('user', userId);
     }
-    ctx.service.home.login(ip);
+    ctx.service.home.login(userId);
     await ctx.render('index.html');
   }
   async getCalendar(ctx) {
