@@ -14,8 +14,10 @@ export function fetch(url,params){
 
 export default {
   // 获取博客标题
-  getBlog(){
-    return fetch('/getBlog')
+  getBlog(param){
+    console.log(param);
+    
+    return fetch('/getBlog',param)
   },
   getCalendar(){
     return fetch('/getCalendar')

@@ -11,6 +11,10 @@ class HomeService extends Service {
       this.logger.error('访问记录插入表失败');
     }
   }
+  async getBlog(row, size) {
+    const result = await homeModel.getBlog(row, size);
+    return result.length > 0 ? result : [];
+  }
   async getVisits() {
     const result = await homeModel.getVisits();
     this.logger.info(result[0].total_count);

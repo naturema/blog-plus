@@ -6,4 +6,5 @@ module.exports = app => {
   router.post('/getCalendar', controller.home.getCalendar);
   router.post('/getCommits', controller.home.getCommits);
   router.post('/getVisits', controller.home.getVisits);
+  router.post('/getBlog', controller.home.getBlog);
 };

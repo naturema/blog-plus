@@ -2,14 +2,15 @@
   <!--Scroll 要放在最外层-->
   <Scroll :on-reach-bottom="handleReachBottom" :height="700">
     <Row class="code-row-bg">
-      <Col span="12" class="gr_col_child" v-for="(item, index) in list" :key="index">
+      <i-col span="12" class="gr_col_child" v-for="(item, index) in list" :key="index">
       <div class="page">
-        <h2 class="title">{{item.title}}</h2>
-        <p>{{item.desc}}</p>
+        <h2 class="title">{{item.blog_title}}</h2>
+        <p>{{item.blog_desc}}</p>
         <!-- <p class="icon"><Icon type="android-favorite-outline"></Icon> 1102</p> -->
-        <p class="icon"><Tag type="dot" color="#293D52">Vue</Tag><Tag type="dot" color="#F1E536">Js</Tag></p>
+        <p class="icon"><Tag v-if="item.tag_name_a" type="dot" :color="item.tag_color_a">{{item.tag_name_a}}</Tag>
+        <Tag v-if="item.tag_name_b" type="dot" :color="item.tag_color_b">{{item.tag_name_b}}</Tag></p>
       </div>
-      </Col>
+      </i-col>
     </Row>
   </Scroll>
 </template>
@@ -18,6 +19,7 @@ import {mapState,mapGetters} from 'vuex'
 export default {
   data(){
     return {
+      index:0
     }
   },
   computed:mapGetters({
@@ -25,12 +27,19 @@ export default {
   }),
   created(){
     this.$store.dispatch('pageChange', 1);
+    this.$store.dispatch('getBlog',{
+      index:this.index
+    });
   },
   methods:{
     handleReachBottom() {
+      const self = this;
+      self.index = self.index + 6;
       return new Promise(resolve => {
         setTimeout(() => {
-          this.$store.dispatch("getBlog", "1");
+          self.$store.dispatch("getBlog", {
+            index:self.index
+          });
           resolve();
         }, 500);
       });

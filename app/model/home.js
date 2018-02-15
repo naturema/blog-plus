@@ -10,6 +10,13 @@ const homeModel = {
     const result = await db.query(sql);
     return result;
   },
+  async getBlog(row, size) {
+    const _sql = `
+         SELECT * FROM blog_main
+         WHERE status=1 limit ${row},${size}`;
+    const result = await db.query(_sql);
+    return result;
+  },
   async getVisits() {
     return db.count('blog_visit');
   },
@@ -21,9 +28,9 @@ const homeModel = {
     const result = await db.query(sql);
     return result;
   },
-  async insertLogin(ip) {
+  async insertLogin(cookie) {
     const data = {
-      ip: ip,
+      ip: cookie,
       visit_time: time.format(new Date()),
     };
     const result = await db.insertData('blog_visit', data);

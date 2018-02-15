@@ -1,13 +1,13 @@
 <template>
     <div>
       <Row>
-        <Col span="18" class="gr_col_auto">
+        <i-col span="18" class="gr_col_auto">
           <vHead></vHead>
           <transition name="move" mode="out-in"><router-view></router-view></transition>
-        </Col>
-        <Col span="6" class="gr_col">
+        </i-col>
+        <i-col span="6" class="gr_col">
           <sideBar></sideBar>
-        </Col>
+        </i-col>
       </Row>
     </div>
 </template>

@@ -18,6 +18,12 @@ class HomeController extends Controller {
     ctx.service.home.login(userId);
     await ctx.render('index.html');
   }
+  async getBlog(ctx) {
+    const index = ctx.request.body.index;
+    this.logger.info(`获取博文${index + 1}到${index + 6}条`);
+    const result = await ctx.service.home.getBlog(index, 6);
+    ctx.body = result;
+  }
   async getCalendar(ctx) {
     const calendar = await ctx.service.home.getCalendar();
     ctx.body = calendar;
