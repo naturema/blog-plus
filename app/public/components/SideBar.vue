@@ -4,31 +4,31 @@
     <div class="calendar">
       <div>
         <Row type="flex" justify="center" align="middle" style="height:35px">
-            <Col span="3">日</Col>
-            <Col span="3">一</Col>
-            <Col span="3">二</Col>
-            <Col span="3">三</Col>
-            <Col span="3">四</Col>
-            <Col span="3">五</Col>
-            <Col span="3">六</Col>
+            <i-col span="3">日</i-col>
+            <i-col span="3">一</i-col>
+            <i-col span="3">二</i-col>
+            <i-col span="3">三</i-col>
+            <i-col span="3">四</i-col>
+            <i-col span="3">五</i-col>
+            <i-col span="3">六</i-col>
         </Row>
       </div>
       
       <div class="table">
         <Row type="flex" justify="center">
-          <Col span="3" v-for="(item,index) in totolList" :key="index">
+          <i-col span="3" v-for="(item,index) in totolList" :key="index">
             <div v-if="currentList.indexOf(item.day) > -1" :style="{background:item.color}" class="hasDay"></div>
             <div v-else class="nullDay"></div>
-          </Col>
+          </i-col>
         </Row>
       </div>
     </div>
     <blockquote>本站导航</blockquote>
       <div class="gr_menu">
-        <div class="gr_menu_list" v-bind:class="{active:index===1}"><Icon type="ios-list"></Icon>博客首页</div>
-        <div class="gr_menu_list" v-bind:class="{active:index===2}"><Icon type="ios-pricetags"></Icon>博文分类</div>
-        <div class="gr_menu_list" v-bind:class="{active:index===3}"><Icon type="ios-calendar"></Icon>博文归档</div>
-        <div class="gr_menu_list" v-bind:class="{active:index===4}"><Icon type="information-circled"></Icon>关于</div>
+        <div class="gr_menu_list" v-bind:class="{active:index===1}" @click="page('main')"><Icon type="ios-list"></Icon>博客首页</div>
+        <div class="gr_menu_list" v-bind:class="{active:index===2}" @click="page('tag')"><Icon type="ios-pricetags"></Icon>博文分类</div>
+        <div class="gr_menu_list" v-bind:class="{active:index===3}" @click="page('date')"><Icon type="ios-calendar"></Icon>博文归档</div>
+        <div class="gr_menu_list" v-bind:class="{active:index===4}" @click="page('about')"><Icon type="information-circled"></Icon>关于</div>
       </div>
     <blockquote>热推文章</blockquote>
     <div class="gr_list">
@@ -68,6 +68,9 @@ export default {
       for(let i=0;i<30;i++){
         self.currentList.push(moment().subtract(i, 'days').format('L'))
       }
+    },
+    page(path){
+      this.$router.replace(path)
     }
   }
 }

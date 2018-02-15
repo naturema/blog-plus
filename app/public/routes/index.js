@@ -8,6 +8,9 @@ Vue.use(Router);
 import Welcome from '../components/Welcome.vue';
 import Main from '../components/Main.vue';
 import TitleList from '../components/TitleList.vue';
+import About from '../components/About.vue';
+import Tagview from '../components/Tagview.vue';
+import Dateview from '../components/Dateview.vue';
 
 export default new Router({
   routes: [{
@@ -25,8 +28,14 @@ export default new Router({
         path: '/',
         component: TitleList
       },{
-        path:'/test',
-        component:Welcome
+        path:'/tag',
+        component:Tagview
+      },{
+        path:'/date',
+        component:Dateview
+      },{
+        path:'/about',
+        component:About
       }]
     }
   ]
