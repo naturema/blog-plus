@@ -11,9 +11,11 @@ const homeModel = {
     return result;
   },
   async getBlog(row, size) {
-    const _sql = `
-         SELECT * FROM blog_main
-         WHERE status=1 limit ${row},${size}`;
+    const _sql = `select a.*,group_concat(b.tag_name) as tag_name,group_concat(b.tag_color) as tag_color
+      from blog_main a left OUTER JOIN blog_tag b
+      on ( a.tag_id_a = b.id or a.tag_id_b = b.id)
+      where a.status = "1"
+      group by id limit ${row},${size}`;
     const result = await db.query(_sql);
     return result;
   },

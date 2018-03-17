@@ -13,6 +13,10 @@ class HomeService extends Service {
   }
   async getBlog(row, size) {
     const result = await homeModel.getBlog(row, size);
+    for (const item of result) {
+      item.tag_name = item.tag_name ? item.tag_name : '';
+      item.tag_color = item.tag_color ? item.tag_color : '';
+    }
     return result.length > 0 ? result : [];
   }
   async getVisits() {
@@ -41,7 +45,7 @@ class HomeService extends Service {
       }
     }
     const list = list1.concat(list2);
-    for (let date of list) {
+    for (const date of list) {
       const res = await homeModel.getCommit(date);
       result[date] = covertColor(res.length);
       result.push({

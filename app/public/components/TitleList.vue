@@ -7,8 +7,8 @@
         <h2 class="title">{{item.blog_title}}</h2>
         <p>{{item.blog_desc}}</p>
         <!-- <p class="icon"><Icon type="android-favorite-outline"></Icon> 1102</p> -->
-        <p class="icon"><Tag v-if="item.tag_name_a" type="dot" :color="item.tag_color_a">{{item.tag_name_a}}</Tag>
-        <Tag v-if="item.tag_name_b" type="dot" :color="item.tag_color_b">{{item.tag_name_b}}</Tag></p>
+        <p class="icon"><Tag v-if="item.tag_name.split(',')[0]" type="dot" :color="item.tag_color.split(',')[0]">{{item.tag_name.split(',')[0]}}</Tag>
+        <Tag v-if="item.tag_name.split(',')[1]" type="dot" :color="item.tag_color.split(',')[1]">{{item.tag_name.split(',')[1]}}</Tag></p>
       </div>
       </i-col>
     </Row>
@@ -92,7 +92,7 @@ a {
 	box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.2);
 	text-shadow: 0 1px 0 #F6EF97;
 	position: relative;
-  height: 205px;
+  height: 185px;
 }
 .page:before {
     -webkit-transform: skew(-15deg) rotate(-5deg);
