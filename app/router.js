@@ -6,4 +6,5 @@ module.exports = app => {
   router.post('/getCommits', controller.home.getCommits);
   router.post('/getVisits', controller.home.getVisits);
   router.post('/getBlog', controller.home.getBlog);
+  router.post('/getBlogById', controller.home.getBlogById);
 };

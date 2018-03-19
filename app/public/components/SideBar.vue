@@ -70,7 +70,8 @@ export default {
       }
     },
     page(path){
-      this.$router.replace(path)
+      this.$router.push('/'+path)
+      // this.$router.replace(path)
     }
   }
 }

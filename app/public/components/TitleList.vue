@@ -4,7 +4,7 @@
     <Row class="code-row-bg">
       <i-col span="12" class="gr_col_child" v-for="(item, index) in list" :key="index">
       <div class="page" @click="blogView(item)">
-        <h2 :id="'blog_'+item.id" class="title">{{item.blog_title}}</h2>
+        <h2 class="title">{{item.blog_title}}</h2>
         <p>{{item.blog_desc}}</p>
         <!-- <p class="icon"><Icon type="android-favorite-outline"></Icon> 1102</p> -->
         <p class="icon"><Tag v-if="item.tag_name.split(',')[0]" type="dot" :color="item.tag_color.split(',')[0]">{{item.tag_name.split(',')[0]}}</Tag>
@@ -49,6 +49,7 @@ export default {
     },
     blogView(item) {
       console.log(item.id)
+      this.$router.replace('page/'+item.id)
     }
   }
 }

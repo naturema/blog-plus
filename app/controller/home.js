@@ -35,6 +35,11 @@ class HomeController extends Controller {
     const count = await ctx.service.home.getVisits();
     ctx.body = count;
   }
+  async getBlogById(ctx) {
+    const id = ctx.request.body.id;
+    const result = await ctx.service.home.getBlogById(id);
+    ctx.body = result;
+  }
 }
 
 module.exports = HomeController;

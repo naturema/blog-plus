@@ -37,6 +37,10 @@ const homeModel = {
     const result = await db.insertData('blog_visit', data);
     return result;
   },
+  async getBlogById(id) {
+    const result = await db.findDataById('blog_main', id);
+    return result;
+  },
 };
 
 module.exports = homeModel;

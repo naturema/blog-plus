@@ -6,3 +6,4 @@ export const GET_COMMITS = 'GET_COMMITS';
 export const GET_VISIT = 'GET_VISIT';
 export const PAGE_CHANGE = 'PAGE_CHANGE';
 export const CLEAR_BLOG = 'CLEAR_BLOG';
+export const GET_BLOG_BYID = 'GET_BLOG_BYID';

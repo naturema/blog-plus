@@ -1,5 +1,8 @@
 {
   "extends": "eslint-config-egg",
+  "rules": {
+    "no-confusing-arrow": "off"
+  },
   "parserOptions": {
     "sourceType": "module",
     "allowImportExportEverywhere": true

@@ -1,4 +1,3 @@
-'use strict';
 
 const Service = require('egg').Service;
 const homeModel = require('../model/home');
@@ -61,6 +60,10 @@ class HomeService extends Service {
     const end = moment().format('L');
     const result = await homeModel.getCommitCount(start, end);
     return result.length;
+  }
+  async getBlogById(id) {
+    const result = await homeModel.getBlogById(id);
+    return result;
   }
 }
 function covertColor(num) {

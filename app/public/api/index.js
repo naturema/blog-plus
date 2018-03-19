@@ -25,4 +25,7 @@ export default {
   getVisits() {
     return fetch('/getVisits');
   },
+  getBlogById(param) {
+    return fetch('/getBlogById', param);
+  },
 };

@@ -1,5 +1,21 @@
 import api from '../../api/index.js';
 import * as types from '../mutation-types.js';
+const marked = require('marked');
+const highlight = require('highlight.js');
+
+marked.setOptions({
+  renderer: new marked.Renderer(),
+  gfm: true,
+  tables: true,
+  breaks: true,
+  pedantic: false,
+  sanitize: false,
+  smartLists: true,
+  smartypants: false,
+  highlight: code => {
+    return highlight.highlightAuto(code).value;
+  },
+});
 
 const state = {
   blogShort: [],
@@ -8,40 +24,35 @@ const state = {
   totalCommits: 0,
   visit: 0,
   activePage: -1,
+  pageView: {},
 };
 
 
 const actions = {
   getVisits({ commit }) {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       api.getVisits()
         .then(res => {
           commit(types.GET_VISIT, res);
           resolve();
-        }).error(() => {
-          reject();
         });
     });
   },
   getBlog({ commit }, param) {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       api.getBlog(param)
         .then(res => {
           commit(types.GET_BLOG, res);
           resolve();
-        }).error(() => {
-          reject();
         });
     });
   },
   getCalendar({ commit }) {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       api.getCalendar()
         .then(res => {
           commit(types.GET_CALENDAR, res);
           resolve();
-        }).error(() => {
-          reject();
         });
     });
   },
@@ -60,6 +71,15 @@ const actions = {
   clearBlog({ commit }) {
     commit(types.CLEAR_BLOG);
   },
+  getBlogById({ commit }, param) {
+    return new Promise(resolve => {
+      api.getBlogById(param)
+        .then(res => {
+          commit(types.GET_BLOG_BYID, res);
+          resolve();
+        });
+    });
+  },
 };
 
 const getters = {
@@ -68,6 +88,8 @@ const getters = {
   totalCommits: state => state.totalCommits,
   visit: state => state.visit,
   activePage: state => state.activePage,
+  pageView: state => state.pageView,
+  pageContent: state => state.pageView.blog_content ? marked(state.pageView.blog_content) : '',
 };
 
 const mutations = {
@@ -93,6 +115,9 @@ const mutations = {
   },
   [types.CLEAR_BLOG](state) {
     state.blogShort = [];
+  },
+  [types.GET_BLOG_BYID](state, res) {
+    state.pageView = res[0];
   },
 };
 
