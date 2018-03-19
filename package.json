@@ -68,7 +68,11 @@
     "cov": "egg-bin cov",
     "lint": "eslint .",
     "ci": "yarn run lint && yarn run cov",
-    "autod": "autod"
+    "autod": "autod",
+    "dev-pc":"webpack --config webpack.dev.js --progress --watch",
+    "build-pc":"webpack --progress",
+    "dev-mobile":"webpack --config webpack_mobile.dev.js --progress --watch",
+    "build-mobile":"webpack --config webpack_mobile.config.js --progress"
   },
   "ci": {
     "version": "8"

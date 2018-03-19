@@ -3,8 +3,8 @@
   <Scroll :on-reach-bottom="handleReachBottom" :height="700">
     <Row class="code-row-bg">
       <i-col span="12" class="gr_col_child" v-for="(item, index) in list" :key="index">
-      <div class="page">
-        <h2 class="title">{{item.blog_title}}</h2>
+      <div class="page" @click="blogView(item)">
+        <h2 :id="'blog_'+item.id" class="title">{{item.blog_title}}</h2>
         <p>{{item.blog_desc}}</p>
         <!-- <p class="icon"><Icon type="android-favorite-outline"></Icon> 1102</p> -->
         <p class="icon"><Tag v-if="item.tag_name.split(',')[0]" type="dot" :color="item.tag_color.split(',')[0]">{{item.tag_name.split(',')[0]}}</Tag>
@@ -31,6 +31,9 @@ export default {
       index:this.index
     });
   },
+  destroyed(){
+    this.$store.dispatch('clearBlog')
+  },
   methods:{
     handleReachBottom() {
       const self = this;
@@ -44,6 +47,9 @@ export default {
         }, 500);
       });
     },
+    blogView(item) {
+      console.log(item.id)
+    }
   }
 }
 </script>
@@ -93,6 +99,7 @@ a {
 	text-shadow: 0 1px 0 #F6EF97;
 	position: relative;
   height: 185px;
+  cursor: pointer;
 }
 .page:before {
     -webkit-transform: skew(-15deg) rotate(-5deg);

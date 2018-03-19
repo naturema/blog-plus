@@ -1,4 +1,3 @@
-'use strict';
 
 const Controller = require('egg').Controller;
 const uuid = require('uuid');

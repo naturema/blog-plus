@@ -1,4 +1,3 @@
-'use strict';
 const db = require('../db.js');
 const time = require('silly-datetime');
 

@@ -4,6 +4,7 @@ const webpack = require('webpack');
 
 
 module.exports = {
+  devtool: 'inline-source-map',
   entry: './app/public/app.js',
   output: {
     path: path.join(__dirname, 'app/public/dist'),
@@ -37,21 +38,10 @@ module.exports = {
     ],
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"',
-      },
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-      },
-    }),
     // new webpack.optimize.CommonsChunkPlugin({
     //   name: 'based',
     //   filename: 'based.js',
     // }),
-    new webpack.BannerPlugin('the file is created by gatinul'),
     // split vendor js into its own file
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
