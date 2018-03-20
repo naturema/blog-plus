@@ -11,7 +11,7 @@
         <span v-if="liked" class="page_blog_yet_like"><Icon size="18" color="#e4393c" type="ios-heart"></Icon>{{article.likes}}</span>
       </span>
     </div>
-    <blockquote class="warn_blockquote" v-if="!isValid">本文已半年没有更新，请读者注意博文实效性~</blockquote>
+    <blockquote class="warn_blockquote" v-if="!isValid">本文已半年没有更新，请读者注意博文时效性~</blockquote>
     <div class="page_blog_content" v-html="main_content"></div>
     <!-- <div style="float:right">
       <Icon size="28" type="ios-heart-outline"></Icon>132

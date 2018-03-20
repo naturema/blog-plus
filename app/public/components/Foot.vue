@@ -1,5 +1,5 @@
 <template>
-  <p>2018 &copy; gatinul</p>
+  <p>2018 &copy; Gatinul</p>
 </template>
 <style scoped>
   p{
