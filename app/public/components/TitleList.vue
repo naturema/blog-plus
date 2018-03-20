@@ -2,20 +2,33 @@
   <!--Scroll 要放在最外层-->
   <Scroll :on-reach-bottom="handleReachBottom" :height="700">
     <Row class="code-row-bg">
-      <i-col span="12" class="gr_col_child" v-for="(item, index) in list" :key="index">
-      <div class="page" @click="blogView(item)">
-        <h2 class="title">{{item.blog_title}}</h2>
-        <p>{{item.blog_desc}}</p>
-        <!-- <p class="icon"><Icon type="android-favorite-outline"></Icon> 1102</p> -->
-        <p class="icon"><Tag v-if="item.tag_name.split(',')[0]" type="dot" :color="item.tag_color.split(',')[0]">{{item.tag_name.split(',')[0]}}</Tag>
-        <Tag v-if="item.tag_name.split(',')[1]" type="dot" :color="item.tag_color.split(',')[1]">{{item.tag_name.split(',')[1]}}</Tag></p>
-      </div>
+      <i-col span="24" class="gr_col_child" v-for="(item, index) in list" :key="index">
+        <div @click="blogView(item)">
+          <Card>
+            <p slot="title">{{item.blog_title}}</p>
+            <p class="" slot="extra">
+              <span>最后更新：{{item.update_time}}</span>
+            </p>
+            <p>{{item.blog_desc}}</p>
+            <p class="gr_bottom_tag">
+              <Tag v-if="item.tag_name.split(',')[0]" type="dot" :color="item.tag_color.split(',')[0]">{{item.tag_name.split(',')[0]}}</Tag>
+              <Tag v-if="item.tag_name.split(',')[1]" type="dot" :color="item.tag_color.split(',')[1]">{{item.tag_name.split(',')[1]}}</Tag>
+            </p>
+          </Card>
+        </div>
+        <!-- <div class="page" @click="blogView(item)">
+          <h2 class="title">{{item.blog_title}}</h2>
+          <p>{{item.blog_desc}}</p>
+          <p class="icon"><Tag v-if="item.tag_name.split(',')[0]" type="dot" :color="item.tag_color.split(',')[0]">{{item.tag_name.split(',')[0]}}</Tag>
+          <Tag v-if="item.tag_name.split(',')[1]" type="dot" :color="item.tag_color.split(',')[1]">{{item.tag_name.split(',')[1]}}</Tag></p>
+        </div> -->
       </i-col>
     </Row>
   </Scroll>
 </template>
 <script>
 import {mapState,mapGetters} from 'vuex'
+import moment from 'moment';
 export default {
   data(){
     return {
@@ -50,6 +63,9 @@ export default {
     blogView(item) {
       console.log(item.id)
       this.$router.replace('page/'+item.id)
+    },
+    format(date) {
+      return moment(date).format('YYYY-MM-DD HH:mm:ss')
     }
   }
 }
@@ -62,101 +78,39 @@ export default {
 	font-size: 84%;
 	font-family: "微软雅黑", "Yahei Mono";
 }
-a {
-	color: #fff;
-	position:absolute;
-	right: 1%;
-	top: 5px;
-}
-.title {
-	text-align:center;
-}
-.title:after {
-	width: 180px;
-	height: 30px;
-	content: " ";
-	margin-left: -90px;
-	border: 1px solid rgba(200, 200, 200, .8);
-	background: rgba(254, 254, 254, .6);
-	-moz-box-shadow: 0px 0 3px rgba(0, 0, 0, 0.1);
-	-webkit-box-shadow: 0px 0 3px rgba(0, 0, 0, 0.1);
-	box-shadow: 0px 0 3px rgba(0, 0, 0, 0.1);
-	-moz-transform: rotate(-5deg); 
-	-webkit-transform: rotate(-5deg);
-	-o-transform: rotate(-5deg);
-    transform: rotate(-5deg);
-	position: absolute;
-	left: 50%;
-	top: -15px;
-}
-.page {
-  background: #E8E8E8;
-  border-radius: 2%;
-	margin: 0 auto;
-	padding: 1em 0 2em;
-	-moz-box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.2);
-	-webkit-box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.2);
-	box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.2);
-	text-shadow: 0 1px 0 #F6EF97;
-	position: relative;
-  height: 185px;
-  cursor: pointer;
-}
-.page:before {
-    -webkit-transform: skew(-15deg) rotate(-5deg);
-    -moz-transform: skew(-15deg) rotate(-5deg);
-	-o-transform: skew(-15deg) rotate(-5deg);
-    transform: skew(-15deg) rotate(-5deg);
-    left: 15px;
-}
-.page:after {
-    -webkit-transform: skew(15deg) rotate(5deg);
-    -moz-transform: skew(15deg) rotate(5deg);
-	-o-transform: skew(15deg) rotate(5deg);
-    transform: skew(15deg) rotate(5deg);
-    right: 15px;
-}
-.page:before, .page:after {
-    width: 90%;
-    height: 20%;
-    content: ' ';
-    -webkit-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    -moz-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    position: absolute;
-    bottom: 22px;
-    z-index: -1;
-}
-.page p {
-	line-height: 2em;
-	padding: 0 2em;
-}
-.page .icon{
-  position: absolute;
-  right: 0px;
-  bottom: 10px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-}
+
 .code-row-bg{
   padding: 30px;
   min-height: 800px;
   padding-top: 10px;
 }
 .gr_col_child{
-  margin-top: -10px;
-  height: 260px;
+  /* margin-top: -10px; */
+  /* height: 260px; */
   overflow: hidden;
-  padding: 32px;
+  padding: 16px 32px;
+}
+.ivu-card{
+  cursor: pointer;
+  background: #f6f6f6!important;
+  padding: 10px;
+}
+.ivu-tag-dot{
+  height: 20px;
+  line-height: 20px;
+  border: 1px solid #f6f6f6!important;
+  color: #495060!important;
+  background: #f6f6f6!important;
+  padding: 0px 12px;
+}
+.ivu-card-head p {
+  font-size: 18px!important;
+}
+.gr_bottom_tag {
+  margin-left: -15px;
+  margin-top: 32px;
 }
 
-.icon .ivu-tag-dot{
-  background: #E8E8E8!important;
-}
-.icon .ivu-tag{
-  padding: 0 4px;
-}
 </style>
 <style>
 .icon .ivu-tag-dot-inner{
@@ -164,6 +118,14 @@ a {
 }
 .icon .ivu-tag-text{
   font-weight:500;
+}
+.ivu-card-extra {
+  padding: 10px!important;
+}
+.ivu-card-extra span{
+  /* font-style:italic; */
+  font-size:13px;
+  color:#777;
 }
 </style>
 

@@ -112,6 +112,7 @@ const mutations = {
     if (res.length > 0) {
       state.success = true;
       for (const item of res) {
+        item.update_time = moment(item.update_time).format('YYYY-MM-DD HH:mm:ss');
         state.blogShort.push(item);
       }
     }

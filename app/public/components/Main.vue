@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="main_body">
       <Row>
         <i-col span="18" class="gr_col_auto">
           <vHead></vHead>
@@ -30,6 +30,9 @@ export default {
 };
 </script>
 <style scoped>
+  .main_body{
+    background: #f6f6f6;
+  }
   .gr_col_auto{
     /* border: 1px solid salmon; */
     min-height: 600px;
