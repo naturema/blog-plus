@@ -28,4 +28,7 @@ export default {
   getBlogById(param) {
     return fetch('/getBlogById', param);
   },
+  likeBlog(param) {
+    return fetch('/likeBlog', param);
+  },
 };

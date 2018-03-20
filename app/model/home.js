@@ -41,6 +41,14 @@ const homeModel = {
     const result = await db.findDataById('blog_main', id);
     return result;
   },
+  async likeBlog(id) {
+    const data = await this.getBlogById(id);
+    const opt = {
+      likes: parseInt(data[0].likes) + 1,
+    };
+    const result = await db.updateData('blog_main', opt, id);
+    return result;
+  },
 };
 
 module.exports = homeModel;

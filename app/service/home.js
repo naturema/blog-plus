@@ -65,6 +65,10 @@ class HomeService extends Service {
     const result = await homeModel.getBlogById(id);
     return result;
   }
+  async likeBlog(id) {
+    const result = await homeModel.likeBlog(id);
+    return result.affectedRows > 0 ? true : false;
+  }
 }
 function covertColor(num) {
   let color = '#e8e8e8';

@@ -20,7 +20,7 @@ export default {
   },
   components: {
     sideBar,
-    vHead
+    vHead,
   },
   created() {
   },
@@ -34,9 +34,10 @@ export default {
     /* border: 1px solid salmon; */
     min-height: 600px;
     overflow: scroll;
+    border-right: 1px dashed #999;
   }
   .gr_col{
-    border-left: 1px dashed #999;
+    /* border-left: 1px dashed #999; */
     height: 800px;
   }
 </style>

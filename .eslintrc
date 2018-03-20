@@ -1,7 +1,8 @@
 {
   "extends": "eslint-config-egg",
   "rules": {
-    "no-confusing-arrow": "off"
+    "no-confusing-arrow": "off",
+    "no-unneeded-ternary": "off"
   },
   "parserOptions": {
     "sourceType": "module",

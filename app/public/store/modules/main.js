@@ -1,5 +1,6 @@
 import api from '../../api/index.js';
 import * as types from '../mutation-types.js';
+import moment from 'moment';
 const marked = require('marked');
 const highlight = require('highlight.js');
 
@@ -80,6 +81,18 @@ const actions = {
         });
     });
   },
+  clearPageView({ commit }) {
+    commit(types.CLEAR_PAGE_VIEW);
+  },
+  likeBlog({ commit }, param) {
+    return new Promise(resolve => {
+      api.likeBlog(param)
+        .then(res => {
+          commit(types.LIKE_BLOG, res);
+          resolve();
+        });
+    });
+  },
 };
 
 const getters = {
@@ -90,6 +103,8 @@ const getters = {
   activePage: state => state.activePage,
   pageView: state => state.pageView,
   pageContent: state => state.pageView.blog_content ? marked(state.pageView.blog_content) : '',
+  pageValid: state => moment(state.pageView.update_time).add(6, 'months').isBefore(new Date()) ? null : true,
+  pageDate: state => state.pageView.update_time ? moment(state.pageView.update_time).format('YYYY-MM-DD HH:mm:ss') : '',
 };
 
 const mutations = {
@@ -118,6 +133,12 @@ const mutations = {
   },
   [types.GET_BLOG_BYID](state, res) {
     state.pageView = res[0];
+  },
+  [types.CLEAR_PAGE_VIEW](state) {
+    state.pageView = {};
+  },
+  [types.LIKE_BLOG]() {
+    console.log(1);
   },
 };
 

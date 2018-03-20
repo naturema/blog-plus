@@ -40,6 +40,11 @@ class HomeController extends Controller {
     const result = await ctx.service.home.getBlogById(id);
     ctx.body = result;
   }
+  async likeBlog(ctx) {
+    const id = ctx.request.body.id;
+    const result = await ctx.service.home.likeBlog(id);
+    ctx.body = result;
+  }
 }
 
 module.exports = HomeController;

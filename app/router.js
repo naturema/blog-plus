@@ -7,4 +7,5 @@ module.exports = app => {
   router.post('/getVisits', controller.home.getVisits);
   router.post('/getBlog', controller.home.getBlog);
   router.post('/getBlogById', controller.home.getBlogById);
+  router.post('/likeBlog', controller.home.likeBlog);
 };

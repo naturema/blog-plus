@@ -1,7 +1,22 @@
 <template>
   <div>
-    <h1 class="page_blog_title">{{article.blog_title}}</h1>
+    <div class="page_blog_title">
+      <h1>{{article.blog_title}}</h1>
+      <Tooltip content="扫码在手机中查看" placement="right-start">
+          <Icon class="page_blog_viewInPhone" size="20" type="iphone"></Icon>
+      </Tooltip>
+      <span class="page_blog_icon">
+        {{update_time}}
+        <span v-if="!liked" @click.once="likeBlog" class="page_blog_like"><Icon size="18" type="ios-heart-outline"></Icon>{{article.likes}}</span>
+        <span v-if="liked" class="page_blog_yet_like"><Icon size="18" color="#e4393c" type="ios-heart"></Icon>{{article.likes}}</span>
+      </span>
+    </div>
+    <blockquote class="warn_blockquote" v-if="!isValid">本文已半年没有更新，请读者注意博文实效性~</blockquote>
     <div class="page_blog_content" v-html="main_content"></div>
+    <!-- <div style="float:right">
+      <Icon size="28" type="ios-heart-outline"></Icon>132
+      <Icon size="24" type="share"></Icon>
+    </div> -->
   </div>
 </template>
 <script>
@@ -11,31 +26,79 @@ export default {
   data(){
     return {
       id: this.$route.params.id,
+      liked: false
     }
   },
   computed:mapGetters({
     article:'pageView',
-    main_content:'pageContent'
+    main_content:'pageContent',
+    isValid: 'pageValid',
+    update_time: 'pageDate'
   }),
   created() {
     this.$store.dispatch('getBlogById',{
       id: this.$route.params.id
     });
+  },
+  destroyed(){
+    this.$store.dispatch('clearPageView')
+  },
+  methods:{
+    likeBlog(){
+      this.$store.dispatch('likeBlog',{
+        id: this.$route.params.id
+      }).then(()=>{
+        this.$store.dispatch('getBlogById',{
+          id: this.$route.params.id
+        });
+        this.liked = true;
+      })
+    }
   }
 }
 </script>
-<style scoped>
-.page_blog_title{
-  text-align: center;
+<style>
+.warn_blockquote{
+  color: #555;
+  border-left: 5px solid #e4393c!important;
+  margin: 20px 100px;
+}
+.page_blog_title {
+  margin: 20px 100px;
+}
+.page_blog_icon{
+  padding-top: .5rem;
+  float: right;
+  font-style: italic;
+  color: #777;
+  font-weight: 400;
+  font-size: 14px;
+}
+.page_blog_viewInPhone{
+  margin-left: .5rem;
+  cursor: pointer;
+}
+.page_blog_like{
+  cursor: pointer;
+}
+.page_blog_yet_like{
+  color: #e4393c;
+}
+.page_blog_icon i {
+  cursor: pointer;
+  margin: 0 .3rem;
+  font-style: italic;
+  font-weight: 600;
+}
+.page_blog_title h1{
+  /* text-align: center; */
+  color: #777;
+  display: inline-block;
 }
 .page_blog_content{
   margin: 20px 100px;
+  margin-bottom: 4rem;
 }
-.page_blog_content p {
-  font-size: 16px;
-}
-</style>
-<style>
 h1,h2,h3,h4,h5,h6{
   margin-top: 0;
   margin-bottom: .5rem!important;
@@ -51,10 +114,11 @@ h1,h2,h3,h4,h5,h6{
   margin-bottom: .28rem!important;
 }
 blockquote {
-  color:#4fc08d;
+  /* color:#4fc08d; */
   color:#998;
   font-style: italic;
-  border-left: 1px dashed #999;
+  /* border-left: 1px dashed #999; */
+  border-left: 5px solid #4fc08d;
   padding-left:15px!important;
   font-size:16px!important;
   margin-bottom:1rem!important;
