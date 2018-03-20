@@ -61,7 +61,7 @@
     "node": ">=8.9.0"
   },
   "scripts": {
-    "start": "egg-scripts start --daemon --port 7003",
+    "start": "export EGG_SERVER_ENV=prod && egg-scripts start --daemon --port 7003",
     "stop": "egg-scripts stop",
     "dev": "egg-bin dev --port 7003",
     "debug": "egg-bin debug",
