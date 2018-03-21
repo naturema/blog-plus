@@ -15,17 +15,17 @@
             . Gatinul
           </div>
         </div>
-        <mu-list @change="handleListChange" :value="activeList">
-          <mu-list-item title="博文首页" value="list1" >
-            <mu-icon slot="left" value="send" />
+        <mu-list :value="activeList">
+          <mu-list-item title="博文首页" value="list1" @click="page('')">
+            <mu-icon slot="left" value="home" />
           </mu-list-item>
-          <mu-list-item title="博文分类" value="list2">
+          <mu-list-item title="博文分类" value="list2" @click="page('m_tag')">
             <mu-icon slot="left" value="drafts"/>
           </mu-list-item>
-          <mu-list-item title="博文归档" value="list3">
+          <mu-list-item title="博文归档" value="list3" @click="page('m_date')">
             <mu-icon slot="left" value="inbox"/>
           </mu-list-item>
-          <mu-list-item title="关于我" value="list4">
+          <mu-list-item title="关于我" value="list4" @click="page('m_about')">
             <mu-icon slot="left" value="info"/>
           </mu-list-item>
         </mu-list>
@@ -39,23 +39,27 @@
   </div>
 </template>
 <script>
+import {mapState,mapGetters} from 'vuex'
 export default {
   data () {
     return {
-      activeList: 'list1',
       showNav:false,
       leftPopup:false
     }
   },
+  computed:mapGetters({
+    activeList:'activeList'
+  }),
   methods: {
-    handleListChange (val) {
-      this.activeList = val
-    },
     openLeft(){
       this.leftPopup = true
     },
     close() {
       this.leftPopup = false;
+    },
+    page(path){
+      this.leftPopup = false;
+      this.$router.push('/'+path)
     }
   }
 }

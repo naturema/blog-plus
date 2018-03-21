@@ -25,6 +25,7 @@ const state = {
   totalCommits: 0,
   visit: 0,
   activePage: -1,
+  activeList: '',
   pageView: {},
 };
 
@@ -69,6 +70,9 @@ const actions = {
   pageChange({ commit }, param) {
     commit(types.PAGE_CHANGE, param);
   },
+  mobilePageChange({ commit }, param) {
+    commit(types.MOBILE_PAGE_CHANGE, param);
+  },
   clearBlog({ commit }) {
     commit(types.CLEAR_BLOG);
   },
@@ -101,6 +105,7 @@ const getters = {
   totalCommits: state => state.totalCommits,
   visit: state => state.visit,
   activePage: state => state.activePage,
+  activeList: state => state.activeList,
   pageView: state => state.pageView,
   pageContent: state => state.pageView.blog_content ? marked(state.pageView.blog_content) : '',
   pageValid: state => moment(state.pageView.update_time).add(6, 'months').isBefore(new Date()) ? null : true,
@@ -128,6 +133,9 @@ const mutations = {
   },
   [types.PAGE_CHANGE](state, param) {
     state.activePage = param;
+  },
+  [types.MOBILE_PAGE_CHANGE](state, param) {
+    state.activeList = param;
   },
   [types.CLEAR_BLOG](state) {
     state.blogShort = [];
