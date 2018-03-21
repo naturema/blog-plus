@@ -5,14 +5,15 @@ const webpack = require('webpack');
 
 module.exports = {
   devtool: 'inline-source-map',
-  entry: './app/public/app.js',
+  entry: './app/public/mobile/app.js',
   output: {
-    path: path.join(__dirname, 'app/public/dist'),
+    path: path.join(__dirname, 'app/public/mobile_dist'),
     filename: '[name].js',
   },
   resolve: {
+    extensions: [ '.js', '.vue', '.json' ],
     alias: {
-      vue: 'vue/dist/vue.js',
+      vue: 'vue/dist/vue.min',
     },
   },
   context: __dirname,

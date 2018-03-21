@@ -6,6 +6,8 @@ const uuid = require('uuid');
 class HomeController extends Controller {
   async index(ctx) {
     let userId;
+    const deviceAgent = ctx.request.headers['user-agent'].toLowerCase();
+    const agentID = deviceAgent.match(/(iphone|ipod|ipad|android)/);
     if (ctx.cookies.get('user')) {
       this.logger.info(`有cookie：${ctx.cookies.get('user')}`);
       userId = ctx.cookies.get('user');
@@ -15,7 +17,11 @@ class HomeController extends Controller {
       ctx.cookies.set('user', userId);
     }
     ctx.service.home.login(userId);
-    await ctx.render('index.html');
+    if (agentID) {
+      await ctx.render('mobile_index.html');
+    } else {
+      await ctx.render('index.html');
+    }
   }
   async getBlog(ctx) {
     const index = ctx.request.body.index;

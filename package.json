@@ -4,18 +4,21 @@
   "description": "blog plus",
   "private": true,
   "dependencies": {
+    "autoprefixer": "^8.1.0",
     "axios": "^0.17.1",
     "babel-polyfill": "^6.26.0",
-    "egg": "^2.0.0",
+    "egg": "^2.5.0",
     "egg-cors": "^2.0.0",
     "egg-logger": "^1.6.1",
     "egg-mysql": "^3.0.0",
     "egg-scripts": "^2.1.0",
+    "egg-static": "^2.1.0",
     "egg-view-nunjucks": "^2.1.4",
     "highlight.js": "^9.12.0",
     "iview": "^2.8.0",
     "marked": "^0.3.6",
     "moment": "^2.20.1",
+    "muse-ui": "^2.1.0",
     "mysql": "^2.15.0",
     "node-uuid": "^1.4.8",
     "silly-datetime": "^0.1.2",
@@ -39,6 +42,8 @@
     "eslint-config-egg": "^5.1.0",
     "file-loader": "^0.9.0",
     "html-loader": "^0.4.5",
+    "less": "^2.7.3",
+    "less-loader": "^4.1.0",
     "postcss-loader": "^1.3.3",
     "rollup-plugin-alias": "^1.4.0",
     "rollup-plugin-babel": "^3.0.3",
@@ -54,7 +59,7 @@
     "url-loader": "^0.5.8",
     "vue-loader": "^11.3.2",
     "vue-template-compiler": "^2.5.13",
-    "webpack": "^2.6.1",
+    "webpack": "^2.7.0",
     "webstorm-disable-index": "^1.2.0"
   },
   "engines": {
@@ -71,10 +76,10 @@
     "lint": "eslint .",
     "ci": "yarn run lint && yarn run cov",
     "autod": "autod",
-    "dev-pc":"webpack --config webpack.dev.js --progress --watch",
-    "build-pc":"webpack --progress",
-    "dev-mobile":"webpack --config webpack_mobile.dev.js --progress --watch",
-    "build-mobile":"webpack --config webpack_mobile.config.js --progress"
+    "dev-pc": "webpack --config webpack.dev.js --progress --watch",
+    "build-pc": "webpack --progress",
+    "dev-mobile": "webpack --config webpack_mobile.dev.js --progress --watch",
+    "build-mobile": "webpack --config webpack_mobile.config.js --progress"
   },
   "ci": {
     "version": "8"
