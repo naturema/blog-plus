@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page_container">
     <mu-icon-button to="/" tooltip="返回首页" tooltipPosition="top-center" class="page_to_home" touch icon="home"/>
     <h2>{{article.blog_title}}</h2>
     <mu-sub-header class="page_header">
@@ -51,6 +51,10 @@ export default {
 }
 </script>
 <style scoped>
+.page_container{
+  position: relative;
+  -webkit-overflow-scrolling: touch;
+}
 .page_header{
   padding-left: 0px!important;
 }
