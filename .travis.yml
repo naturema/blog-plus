@@ -13,6 +13,7 @@ script:
 after_success:
 - tar -jcf blog-plus.tar.bz2 * --exclude=app/public/api --exclude=app/public/components --exclude=app/public/routes 
   --exclude=app/public/store --exclude=app/public/app.js --exclude=node_modules --exclude=logs --exclude=config.js
+  --exclude=app/public/mobile
 - scp blog-plus.tar.bz2 root@59.110.233.80:/home/blog-plus
 - ssh root@59.110.233.80 'cd /home/blog-plus && tar -jxf blog-plus.tar.bz2'
 - ssh root@59.110.233.80 'cd /home/blog-plus && cnpm i --production && npm stop && source ~/.bash_profile;npm start'
