@@ -39,9 +39,12 @@ export default {
     list:'blogShort'
   }),
   created(){
+    this.$Spin.show();
     this.$store.dispatch('pageChange', 1);
     this.$store.dispatch('getBlog',{
       index:this.index
+    }).then(()=>{
+      this.$Spin.hide();
     });
   },
   destroyed(){

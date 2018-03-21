@@ -36,8 +36,11 @@ export default {
     update_time: 'pageDate'
   }),
   created() {
+    this.$Spin.show();
     this.$store.dispatch('getBlogById',{
       id: this.$route.params.id
+    }).then(()=>{
+      this.$Spin.hide();
     });
   },
   destroyed(){
