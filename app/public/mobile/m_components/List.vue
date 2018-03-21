@@ -1,18 +1,20 @@
 <template>
   <div class="demo-infinite-container">
-    <mu-card v-for="(item, index) in list" :key="index">
-      <mu-card-title :title="item.blog_title" :subTitle="item.update_time"/>
-      <mu-card-text style="color:#444">
-        {{item.blog_desc}}
-      </mu-card-text>
-      <mu-card-actions>
-        <mu-chip v-if="item.tag_name.split(',')[0]" class="list_chip">
-          {{item.tag_name.split(',')[0]}}
-        </mu-chip>
-        <mu-chip v-if="item.tag_name.split(',')[1]" class="list_chip">
-          {{item.tag_name.split(',')[1]}}
-        </mu-chip>
-      </mu-card-actions>
+    <mu-card v-for="(item, index) in list" :key="index" >
+      <div @click="blogView(item)">
+        <mu-card-title :title="item.blog_title" :subTitle="item.update_time"/>
+        <mu-card-text style="color:#444">
+          {{item.blog_desc}}
+        </mu-card-text>
+        <mu-card-actions>
+          <mu-chip v-if="item.tag_name.split(',')[0]" class="list_chip">
+            {{item.tag_name.split(',')[0]}}
+          </mu-chip>
+          <mu-chip v-if="item.tag_name.split(',')[1]" class="list_chip">
+            {{item.tag_name.split(',')[1]}}
+          </mu-chip>
+        </mu-card-actions>
+      </div>
     </mu-card>
     <mu-infinite-scroll :scroller="scroller" :loading="loading" @load="loadMore"/>
   </div>
@@ -58,7 +60,11 @@ export default {
           self.loading = false
         }, 500);
       });
-    }
+    },
+    blogView(item) {
+      console.log(item.id)
+      this.$router.replace('page/'+item.id)
+    },
   }
 }
 </script>

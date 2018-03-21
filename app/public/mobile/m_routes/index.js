@@ -7,6 +7,7 @@ import List from '../m_components/List.vue';
 import Tagview from '../m_components/Tagview.vue';
 import DateView from '../m_components/DateView.vue';
 import About from '../m_components/About.vue';
+import Page from '../m_components/Page.vue';
 
 
 export default new Router({
@@ -22,6 +23,9 @@ export default new Router({
     }, {
       path: '/m_date',
       component: DateView,
+    }, {
+      path: '/page/:id',
+      component: Page,
     }, {
       path: '/m_about',
       component: About,
