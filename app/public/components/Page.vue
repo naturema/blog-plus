@@ -2,9 +2,13 @@
   <div>
     <div class="page_blog_title">
       <h1>{{article.blog_title}}</h1>
-      <Tooltip content="扫码在手机中查看" placement="right-start">
-          <Icon class="page_blog_viewInPhone" size="20" type="iphone"></Icon>
-      </Tooltip>
+      <Poptip placement="right" width="110">
+        <Icon @click.native="viewInPhone" class="page_blog_viewInPhone" size="22" type="iphone"></Icon>
+        <div class="api" slot="content">
+          <p style="marginBottom:.5rem"><Icon color="#6dcc2b" size="16" type="qr-scanner" style="marginRight:.5rem"></Icon>手机扫码查看</p>
+          <qrcode-vue :value="value" :size="100"></qrcode-vue>
+        </div>
+      </Poptip>
       <span class="page_blog_icon">
         {{update_time}}
         <span v-if="!liked" @click.once="likeBlog" class="page_blog_like"><Icon size="18" type="ios-heart-outline"></Icon>{{article.likes}}</span>
@@ -21,13 +25,18 @@
 </template>
 <script>
 import {mapState,mapGetters} from 'vuex';
+import QrcodeVue from 'qrcode.vue';
 
 export default {
   data(){
     return {
       id: this.$route.params.id,
-      liked: false
+      liked: false,
+      value:'https://www.baidu.com'
     }
+  },
+  components: {
+    QrcodeVue
   },
   computed:mapGetters({
     article:'pageView',
@@ -42,6 +51,7 @@ export default {
     }).then(()=>{
       this.$Spin.hide();
     });
+    this.value = location.href;
   },
   destroyed(){
     this.$store.dispatch('clearPageView')
@@ -56,6 +66,9 @@ export default {
         });
         this.liked = true;
       })
+    },
+    viewInPhone(){
+      console.log(location.href)
     }
   }
 }

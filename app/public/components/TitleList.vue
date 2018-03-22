@@ -16,12 +16,6 @@
             </p>
           </Card>
         </div>
-        <!-- <div class="page" @click="blogView(item)">
-          <h2 class="title">{{item.blog_title}}</h2>
-          <p>{{item.blog_desc}}</p>
-          <p class="icon"><Tag v-if="item.tag_name.split(',')[0]" type="dot" :color="item.tag_color.split(',')[0]">{{item.tag_name.split(',')[0]}}</Tag>
-          <Tag v-if="item.tag_name.split(',')[1]" type="dot" :color="item.tag_color.split(',')[1]">{{item.tag_name.split(',')[1]}}</Tag></p>
-        </div> -->
       </i-col>
     </Row>
   </Scroll>

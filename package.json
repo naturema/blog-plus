@@ -21,6 +21,7 @@
     "muse-ui": "^2.1.0",
     "mysql": "^2.15.0",
     "node-uuid": "^1.4.8",
+    "qrcode.vue": "^1.5.2",
     "silly-datetime": "^0.1.2",
     "vue": "^2.5.13",
     "vue-router": "^3.0.1",
