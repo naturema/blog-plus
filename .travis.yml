@@ -1,19 +1,10 @@
+sudo: false
 language: node_js
 node_js:
-- '8'
-before_install:
-- openssl aes-256-cbc -K $encrypted_c6145bf781e6_key -iv $encrypted_c6145bf781e6_iv
-  -in id_rsa.enc -out ~/.ssh/id_rsa -d
-- chmod 600 ~/.ssh/id_rsa
-- echo -e "Host 59.110.233.80\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+  - '8'
 install:
-- npm i npminstall && npminstall
+  - npm i npminstall && npminstall
 script:
-- node -v
-after_success:
-- tar -jcf blog-plus.tar.bz2 * --exclude=app/public/api --exclude=app/public/components --exclude=app/public/routes 
-  --exclude=app/public/store --exclude=app/public/app.js --exclude=node_modules --exclude=logs --exclude=config.js
-  --exclude=app/public/mobile
-- scp blog-plus.tar.bz2 root@59.110.233.80:/home/blog-plus
-- ssh root@59.110.233.80 'cd /home/blog-plus && tar -jxf blog-plus.tar.bz2'
-- ssh root@59.110.233.80 'cd /home/blog-plus && cnpm i --production && npm stop && source ~/.bash_profile;npm start'
+  - npm run ci
+after_script:
+  - npminstall codecov && codecov
