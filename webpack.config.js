@@ -51,7 +51,7 @@ module.exports = {
     //   name: 'based',
     //   filename: 'based.js',
     // }),
-    new webpack.BannerPlugin('the file is created by gatinul'),
+    new webpack.BannerPlugin('the file is created by 温梓茵'),
     // split vendor js into its own file
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',

@@ -1,11 +1,13 @@
 <template>
     <div class="container">
         <div class="header_title">
-            <h2>. Gatinul</h2>
+            <h2>. 温梓茵</h2>
+           {/* 
             <p class="title_extra">
                 <Icon type="social-github" @click.native="github"></Icon>
                 <Icon type="social-twitter" @click.native="twitter"></Icon>            
             </p>
+            */}
         </div>
         <div class="left_title">{{left_title}}</div>
         <div class="left_visit"><Icon type="eye"></Icon> <span>{{visit}}</span></div>
@@ -45,11 +47,11 @@
         methods:{
             github:function(){
                 this.$Spin.show(); // 全局加载中
-                location.href = 'https://github.com/gatinul'
+                location.href = 'https://github.com/温梓茵'
             },
             twitter(){
                 this.$Spin.show();
-                location.href =  'https://twitter.com/gatinul'
+                location.href =  'https://twitter.com/温梓茵'
             },
             gotoMain(){
                 this.$router.push('/main');

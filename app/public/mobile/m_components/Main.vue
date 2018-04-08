@@ -2,7 +2,7 @@
   <div class="layout">
     <div class="header">
       <div class="logo" @click="openLeft">
-         <mu-icon style="margin-right:.5rem" value="menu" />. Gatinul
+         <mu-icon style="margin-right:.5rem" value="menu" />. 温梓茵
       </div>
       <div style="float:right">
         <img class="logoImg" src="/public/images/love.png" alt="">
@@ -12,7 +12,7 @@
       <mu-popup position="left" popupClass="popup-left" :open="leftPopup" @close="close">
         <div class="header">
           <div class="logo">
-            . Gatinul
+            . 温梓茵
           </div>
         </div>
         <mu-list :value="activeList">

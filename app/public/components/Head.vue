@@ -1,7 +1,7 @@
 <template>
   <div>
       <Avatar src="/public/images/love.png" size="large" />
-      <span class="name">. Gatinul</span>
+      <span class="name">. 温梓茵</span>
       <Input icon="search" class="gr_input" placeholder="全文搜索..." style="width: 400px" />
   </div>
 </template>
